@@ -64,6 +64,8 @@ public class Order {
         this.payment = payment;
     }
 
+    public Order(){}
+
     public Order(Long id, Instant moment, OrderStatus status, User client, Payment payment) {
         this.id = id;
         this.moment = moment;

@@ -13,7 +13,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Digo pro banco gerar o valor da chave automaticamente quando você fizer um INSERT tipo um auto_increment
     private Long id;
     private String name;
-    private String email; private String phone;
+
+    @Column(unique = true) //Campo email no banco é unico
+    private String email;
+    private String phone;
     private LocalDate birthDate;
     private String password;
 
@@ -80,4 +83,6 @@ public class User {
     public List<Order> getOrders() {
         return orders;
     }
+
+    public User(){}
 }

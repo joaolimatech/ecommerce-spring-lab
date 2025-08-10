@@ -38,4 +38,6 @@ public class Payment {
     public Order getOrder() {
         return order;
     }
+
+    public Payment(){}
 }
