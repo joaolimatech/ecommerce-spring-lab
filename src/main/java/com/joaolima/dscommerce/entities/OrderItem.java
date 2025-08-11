@@ -20,6 +20,7 @@ public class OrderItem {
         this.price = price;
     }
 
+    //Verificar o pedido por id na table Order
     public Order getOrder(){
         return id.getOrder();
     }

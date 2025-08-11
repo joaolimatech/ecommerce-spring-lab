@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -67,6 +68,17 @@ public class Order {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    //Vou na lista de OrderItem, para cada elemento X (OrderItem com qtd)
+    public List<Product> getProducts(){
+        return items.stream().map(x -> x.getProduct()).toList();
+
+
     }
 
     public Order(){}
