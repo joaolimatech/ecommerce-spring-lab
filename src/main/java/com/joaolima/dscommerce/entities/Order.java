@@ -21,7 +21,7 @@ public class Order {
 
     //Quando formos fazer um relacionamento Muitos:1, devemos usar a anotacao:
     @ManyToOne //pois um pedido só pode pertencer a 1 cliente
-    @JoinColumn(name="client _id") //FK adiconada na table tb_name
+    @JoinColumn(name="client_id") //FK adiconada na table tb_name
     private User client;
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL) //Cascade all -> faz salvar/excluir o pagamento junto com o pedido
