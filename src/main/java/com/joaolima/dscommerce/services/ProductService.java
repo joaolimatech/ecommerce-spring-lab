@@ -4,9 +4,12 @@ import com.joaolima.dscommerce.dto.ProductDTO;
 import com.joaolima.dscommerce.entities.Product;
 import com.joaolima.dscommerce.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -21,6 +24,13 @@ public class ProductService {
 //        ProductDTO dto = new ProductDTO(productEntidade.getId(), productEntidade.getName(), productEntidade.getDescription(), productEntidade.getPrice(), productEntidade.getImgUrl());
         ProductDTO dto = new ProductDTO(productEntidade);
         return  dto;
+
+    }
+
+    @Transactional (readOnly = true)
+    public Page<ProductDTO> findAll(Pageable pageable){
+        Page<Product> resultList = productRepository.findAll(pageable);    //Para retornar todos Dados paginados.
+        return  resultList.map(p -> new ProductDTO(p));
 
     }
 
