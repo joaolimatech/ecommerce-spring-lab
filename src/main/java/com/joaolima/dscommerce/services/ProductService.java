@@ -34,4 +34,14 @@ public class ProductService {
 
     }
 
+    @Transactional
+    public ProductDTO insert(ProductDTO dto){
+
+        Product produtoEntity = new Product(dto);
+
+        produtoEntity = productRepository.save(produtoEntity);
+        return new ProductDTO(produtoEntity);
+
+    }
+
 }
