@@ -41,6 +41,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO dto)//RequestBody configura q isso será o corpo da requiscao e instancia o dto
+            //o @RequestParam é quando você quer pegar um dado da URL para String, por exemplo. produtos?madeIn=Brazil&color=blue. Como se fosse um tipo de "filtro"
     {
         dto = productService.insert(dto);
         log.info("Adicionado o produto {} / {}", dto.getId(), dto.getName());
@@ -50,6 +51,13 @@ public class ProductController {
                 .buildAndExpand(dto.getId())             // Substitui {id} pelo ID real do produto
                 .toUri();                                // Converte para objeto URI
         return ResponseEntity.status(HttpStatus.CREATED).location(uri).body(dto);
+    }
+
+    @PutMapping (value = "/{id}") //Isso é uma URI -> /products/{id}
+    public ResponseEntity<ProductDTO> update(@PathVariable long id, @RequestBody ProductDTO dto) //@PathVariable (ler id/input da URL. Geralmente em Get, delete e update) / @RequestBOdy lê Body da requisicao
+    {
+        ProductDTO p = productService.update(id, dto);
+        return ResponseEntity.ok(p); //Resposta 200
     }
 
 }

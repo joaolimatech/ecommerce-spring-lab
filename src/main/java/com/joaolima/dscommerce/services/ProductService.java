@@ -44,4 +44,22 @@ public class ProductService {
 
     }
 
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO dto){
+
+        Product produtoEntity = productRepository.getReferenceById(dto.getId()); //Essa operação é != do findById pois ele nao vai no banco ainda.
+        //Copy to entity (?)
+        copyToEntity(dto, produtoEntity);
+        produtoEntity = productRepository.save(produtoEntity);
+        return new ProductDTO(produtoEntity);
+
+    }
+
+    private void copyToEntity(ProductDTO dto, Product entidade){
+        entidade.setDescription(dto.getDescription());
+        entidade.setName(dto.getName());
+        entidade.setPrice(dto.getPrice());
+        entidade.setImgUrl(dto.getImgUrl());
+    }
+
 }
