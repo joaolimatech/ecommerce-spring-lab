@@ -22,8 +22,7 @@ public class ProductService {
     public ProductDTO findById(Long id){
         Product productEntidade = productRepository.findById(id).get();   // lembrando q esse metodo sempre recebe um Optional<>, por isso estou ja dando o get() dentro desse optional. Mas, dessa forma, nao estou tratando a excecao
 //        ProductDTO dto = new ProductDTO(productEntidade.getId(), productEntidade.getName(), productEntidade.getDescription(), productEntidade.getPrice(), productEntidade.getImgUrl());
-        ProductDTO dto = new ProductDTO(productEntidade);
-        return  dto;
+        return new ProductDTO(productEntidade);
 
     }
 
@@ -61,5 +60,10 @@ public class ProductService {
         entidade.setPrice(dto.getPrice());
         entidade.setImgUrl(dto.getImgUrl());
     }
+
+    @Transactional
+    public void delete(Long id){
+           productRepository.deleteById(id);
+        }
 
 }

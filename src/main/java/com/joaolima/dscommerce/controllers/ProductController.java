@@ -60,4 +60,11 @@ public class ProductController {
         return ResponseEntity.ok(p); //Resposta 200
     }
 
+    @DeleteMapping   (value = "/{id}") //Isso é uma URI -> /products/{id}
+    public ResponseEntity<Void> update(@PathVariable long id )  //Respnse entity Void, significa que vai retornar uma resposta sem corpo, apenas o status code
+    {
+        productService.delete(id);
+        return ResponseEntity.noContent().build(); //Deu certo e sem corpo? Retorna 204
+    }
+
 }
