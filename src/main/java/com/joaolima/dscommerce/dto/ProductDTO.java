@@ -25,8 +25,7 @@ public class ProductDTO {
         this.imgUrl = entidade.getImgUrl();
     }
 
-    public ProductDTO( ) {
-    }
+   //Como só temos o get, tirei o Construtor vazio pois estou exigindo que esse cara só seja instanciado pelo Construtor com todos argumentos. Sem sets
 
     public String getName() {
         return name;
